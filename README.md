@@ -132,5 +132,5 @@ usar o `polygonsOverlap`.
 
 [vector2]: https://libgdx.badlogicgames.com/nightlies/docs/api/com/badlogic/gdx/math/Vector2.html
 [shape]: https://libgdx.badlogicgames.com/nightlies/docs/api/com/badlogic/gdx/graphics/glutils/ShapeRenderer.html
-[intersector]: https://libgdx.badlogicgames.com/nightlies/docs/api/com/badlogic/gdx/math/Polygon.html
+[polygon]: https://libgdx.badlogicgames.com/nightlies/docs/api/com/badlogic/gdx/math/Polygon.html
 [intersector]: https://libgdx.badlogicgames.com/nightlies/docs/api/com/badlogic/gdx/math/Intersector.html
