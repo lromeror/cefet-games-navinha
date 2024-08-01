@@ -23,7 +23,6 @@ public class NavinhaGame extends ApplicationAdapter {
     private Array<Shot> shots;
     private Array<Asteroid> asteroids;
     private static final int MAX_ASTEROIDS = 10;
-    
 
     @Override
     public void create() {
@@ -59,9 +58,7 @@ public class NavinhaGame extends ApplicationAdapter {
         shapeRenderer = new ShapeRenderer();
         camera = new OrthographicCamera();
         camera.setToOrtho(false, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-        area = new Rectangle(0, 0,
-                Gdx.graphics.getWidth(), Gdx.graphics.getHeight()
-        );
+        area = new Rectangle(0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 
         background = new Background();
         ship = new Ship(area);
@@ -70,6 +67,9 @@ public class NavinhaGame extends ApplicationAdapter {
         for (int i = 0; i < MAX_ASTEROIDS; i++) {
             asteroids.add(new Asteroid(area));
         }
+
+        // Llamar al método showMessage del Singleton Config
+        Config.getInstance().showMessage();
     }
 
     private void handleInput() {
@@ -83,55 +83,55 @@ public class NavinhaGame extends ApplicationAdapter {
         } else if (Gdx.input.isKeyJustPressed(Keys.TAB)) {
             ship.switchWeapon();
         } else if (Gdx.input.isKeyJustPressed(Keys.D)) {
-            Config.debug = !Config.debug;
+            Config.getInstance().debug = !Config.getInstance().debug;
         } else if (Gdx.input.isKeyJustPressed(Keys.ESCAPE)) {
             Gdx.app.exit();
         }
     }
-    
+
     private void update(float dt) {
         camera.update();
 
         handleInput();
         background.update(dt);
         ship.update(dt);
-        // para todos os tiros da lista de tiros "vivos"
+        // para todos los tiros de la lista de tiros "vivos"
         for (Shot shot : shots) {
             shot.update(dt);
 
-            // se tiver saído da tela, remove-o da lista
+            // si ha salido de la pantalla, elimínalo de la lista
             if (shot.isOutOfBounds(area)) {
                 shots.removeValue(shot, false);
             }
 
-            // verifica se colidiu com asteroides
+            // verifica si colisionó con asteroides
             for (Asteroid asteroid : asteroids) {
                 if (shot.collidesWith(asteroid)) {
-                    // "recicla" o asteróide
+                    // "recicla" el asteroide
                     asteroid.recycle(area.height);
-                    // remove o tiro da lista
+                    // elimina el tiro de la lista
                     shots.removeValue(shot, false);
                 }
             }
         }
 
-        // para todos os asteróides
+        // para todos los asteroides
         for (Asteroid asteroid : asteroids) {
             asteroid.update(dt);
 
-            // se tiver saído da tela, recicla-o
+            // si ha salido de la pantalla, recíclalo
             if (asteroid.isOutOfBounds(area)) {
                 asteroid.recycle(area.height);
             }
 
-            // verifica se colidiu com nave do jogador e o recicla
+            // verifica si colisionó con la nave del jugador y recíclalo
             if (asteroid.collidesWith(ship)) {
                 asteroid.recycle(area.height);
             }
         }
     }
 
-    //@Override
+    @Override
     public void render() {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 

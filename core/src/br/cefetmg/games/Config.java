@@ -1,10 +1,24 @@
 package br.cefetmg.games;
 
 /**
- *
- * @author fegemo <coutinho@decom.cefetmg.br>
+ * Configuration settings for the game.
  */
 public class Config {
-    /** Se o modo de debug está ativado ou não */
+
     public static boolean debug = false;
+
+    private static Config instance = new Config();
+
+    private Config() {
+        
+    }
+
+
+    public static Config getInstance() {
+        return instance;
+    }
+
+    public void showMessage() {
+        System.out.println("Config Singleton instance is working!");
+    }
 }

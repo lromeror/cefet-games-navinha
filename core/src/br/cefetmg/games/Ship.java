@@ -17,7 +17,7 @@ import com.badlogic.gdx.utils.TimeUtils;
 /**
  * A nave do jogador.
  *
- * @author fegemo <coutinho@decom.cefetmg.br>
+ * autor fegemo <coutinho@decom.cefetmg.br>
  */
 public class Ship implements Entity, Collidable {
 
@@ -55,14 +55,18 @@ public class Ship implements Entity, Collidable {
 
         weapons = new Array<Weapon>(new Weapon[]{
             new LaserWeapon(
-            new Vector2(VERTICES[1 * 2] * scale, VERTICES[1 * 2 + 1] * scale),
-            new Vector2(VERTICES[5 * 2] * scale, VERTICES[5 * 2 + 1] * scale)
+                new Vector2(VERTICES[1 * 2] * scale, VERTICES[1 * 2 + 1] * scale),
+                new Vector2(VERTICES[5 * 2] * scale, VERTICES[5 * 2 + 1] * scale)
             ),
             new VortexWeapon(
-            new Vector2(VERTICES[3 * 2] * scale, VERTICES[3 * 2 + 1] * scale)
+                new Vector2(VERTICES[3 * 2] * scale, VERTICES[3 * 2 + 1] * scale)
             )
         });
         lastShotMillis = 0;
+
+        // Accediendo a la configuración global del juego
+        Config config = Config.getInstance();
+        System.out.println("Volume: " + config.getVolume());
     }
 
     void startMovingLeft() {
