@@ -71,7 +71,8 @@ public class VortexShot implements Shot {
     @Override
     public Rectangle getMinimumBoundingRectangle() {
         return bounds;
-    }
+    } 
+    
 
     @Override
     public Circle getMinimumEnclosingBall() {
